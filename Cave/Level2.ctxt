@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Level2
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Level1\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=rimuru
+comment1.target=Level2(Slime)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ prepararMundo()
+comment4.params=
+comment4.target=void\ enterLevel()
+comment5.params=
+comment5.target=void\ openedCave()
+comment6.params=
+comment6.target=void\ closedCave()
+comment7.params=
+comment7.target=void\ UpdateHealth()
+numComments=8

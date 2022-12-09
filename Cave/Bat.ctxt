@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Bat
+comment1.params=leftLimit\ rightLimit
+comment1.target=Bat(int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveLeft()
+comment4.params=
+comment4.target=void\ moveRight()
+comment5.params=
+comment5.target=void\ staticMove()
+comment6.params=
+comment6.target=boolean\ canMoveRight()
+comment7.params=
+comment7.target=boolean\ canMoveLeft()
+numComments=8

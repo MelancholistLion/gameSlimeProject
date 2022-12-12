@@ -1,11 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
 
-/**
- * Write a description of class Level6 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Level6 extends Level
 {
 
@@ -50,11 +48,9 @@ public class Level6 extends Level
     Rock1 rock24 = new Rock1();
     
     
-    public Level6(Slime rimuru)
+    protected Level6(Slime rimuru)
     {    
         super(rimuru);
-        this.rimuru = rimuru;
-        addObject(this.rimuru, 335, 313);
     }
     public void act() {
         closedCave();
@@ -97,20 +93,20 @@ public class Level6 extends Level
         addObject(slime2, 580, 313);
         
     }
-    public void enterLevel() {
+    public void enterLevel(){
         if(!doorsClosed) {
             if(rimuru.getX() > 297 && rimuru.getX() < 400 && rimuru.getY() < 122) {
                 Greenfoot.setWorld(new Level7(rimuru));
             }
         }
     }
-    public void openedCave() {
+    public void openedCave(){
         if(doorsOpened) {
-            for(int i = 0; i < 4; i++) {
+        for(int i = 0; i < 4; i++) {
                 setBackground(new GreenfootImage(animationOpened2[i]));
                 Greenfoot.delay(2);
-            }
-            doorsOpened = false;
+        }
+        doorsOpened = false;
         }
     }
     public void closedCave() {
@@ -127,9 +123,25 @@ public class Level6 extends Level
             heart.setHealth(rimuru.getHealth());
             heart.setHeartImage();
         } else if(rimuru.getHealth() == 0) {
-            heart.setHealth(rimuru.getHealth());
-            heart.setHeartImage();
-            Greenfoot.setWorld(new GameOver());
+            try
+            {
+                saveScore();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+            Greenfoot.setWorld(new GameOver(rimuru));
+        }
+    }
+    public void saveScore() throws IOException {
+        File file = new File("records.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(rimuru.getName() + " Nivel: 6\n");
+            fileWriter.close();
+        } catch(IOException ioexception) {
+            throw ioexception;
         }
     }
 }

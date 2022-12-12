@@ -20,10 +20,10 @@ public class Win extends World
         if(Greenfoot.isKeyDown("SPACE") || Greenfoot.isKeyDown("ENTER")) {
             switch(opcion) {
                 case 0:
-                    Greenfoot.setWorld(new Level1(new Slime()));
+                    Greenfoot.setWorld(new Menu());
                     break;
                 case 1:
-                    Greenfoot.setWorld(new Menu());
+                    Greenfoot.stop();
                     break;
             }
             

@@ -11,15 +11,9 @@ public class Slime extends Actor
     private GifImage SlimeDown= new GifImage("Version_3/downAnimation.gif");
     private GifImage SlimeFront = new GifImage("Version_3/frontAnimation.gif");
     private GifImage SlimeDamage = new GifImage("Version_3/damage.gif");
-    
+    private String name;
     private boolean damaged = false;
     private int orientation = 1;
-    private int[] upLeft = {45,120};
-    private int[] downLeft = {45, 370};
-    private int[] upRight = {674, 120};
-    private int[] downRight = {674, 370};
-    private int[] doorLeft = {297, 120};
-    private int[] doorRight = {400, 120};
     private int healthy = 2;
     
     
@@ -111,6 +105,9 @@ public class Slime extends Actor
             return false;
         }
     }
+    public void setHealth() {
+        healthy = 2;
+    }
     public int getHealth() {
         return healthy;
     }
@@ -142,5 +139,11 @@ public class Slime extends Actor
             setImage(SlimeDamage.getCurrentImage());
         }
         damaged = false;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
     }
 }

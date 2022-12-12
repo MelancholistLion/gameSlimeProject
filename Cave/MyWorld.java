@@ -12,7 +12,6 @@ public class MyWorld extends World
     {    
         super(700, 394, 1); 
         prepararMundo();
-
     }
     private void prepararMundo() {
         addObject(leo, 191, 289);
@@ -32,6 +31,8 @@ public class MyWorld extends World
                 Greenfoot.delay(2);
             }
             doorsClosed = false;
+            String input = Greenfoot.ask("¿Cual es tu nombre gran heroe?");
+            rimuru.setName(input);
         }
     }
     public void enterLevel() {

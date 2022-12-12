@@ -1,11 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
 
-/**
- * Write a description of class Level7 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class Level7 extends Level
 {
     private boolean doorsClosed = true;
@@ -15,8 +13,8 @@ public class Level7 extends Level
     private boolean victory = false;
     private Lich TheLich = new Lich();
     
-    public Level7(Slime rimuru)
-    {
+    protected Level7(Slime rimuru)
+    {    
         super(rimuru);
         this.rimuru = rimuru;
         addObject(this.rimuru, 335, 313);
@@ -45,13 +43,47 @@ public class Level7 extends Level
             heart.setHealth(rimuru.getHealth());
             heart.setHeartImage();
         } else if(rimuru.getHealth() == 0) {
-            heart.setHealth(rimuru.getHealth());
-            heart.setHeartImage();
-            Greenfoot.setWorld(new GameOver());
+            try
+            {
+                saveScore();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+            Greenfoot.setWorld(new GameOver(rimuru));
+        }
+    }
+    public void saveScore() throws IOException {
+        File file = new File("records.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(rimuru.getName() + " Nivel: 7\n");
+            fileWriter.close();
+        } catch(IOException ioexception) {
+            throw ioexception;
+        }
+    }
+    public void saveScoreWon() throws IOException {
+        File file = new File("records.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(rimuru.getName() + " Victorioso\n");
+            fileWriter.close();
+        } catch(IOException ioexception) {
+            throw ioexception;
         }
     }
     public void UpdateHealthLich() {
         if(TheLich.getHealth() <= 0) {
+            try
+            {
+                saveScoreWon();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
             Greenfoot.setWorld(new Win());
         }
     }

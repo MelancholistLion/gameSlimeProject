@@ -1,0 +1,23 @@
+null Nivel: 5
+ElLeo Nivel: 5
+Gabriel Nivel: 1
+null Nivel: 2
+null Nivel: 3
+null Victorioso
+Gabriel Nivel: 2
+Gaby Nivel: 1
+null Nivel: 2
+null Nivel: 3
+null Nivel: 3
+null Nivel: 4
+null Nivel: 1
+Orthos Nivel: 2
+Orthos Nivel: 1
+Orthos Nivel: 1
+Orthos Nivel: 1
+Asura Nivel: 3
+Asura Nivel: 1
+Jarrito Nivel: 2
+Jarrito Nivel: 4
+Jarrito Nivel: 5
+Jarrito Victorioso

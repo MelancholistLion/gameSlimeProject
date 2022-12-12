@@ -3,7 +3,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Frog extends Actor
 {
     private GifImage myImage = new GifImage("Rana/Rana.gif");
-    
     public Frog() {
     }
     public void act()
@@ -16,7 +15,6 @@ public class Frog extends Actor
             getWorld().addObject(ff, 330, 320);
             getWorld().addObject(fd, 330, 315);
             Greenfoot.setSpeed(40);
-            int frame = 0;
             ff.setLimit(6);
             getWorld().removeObject(this);
         }

@@ -1,11 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-/**
- * Write a description of class Level5 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Level5 extends Level
 {
 
@@ -27,7 +24,7 @@ public class Level5 extends Level
     SlimeEnemy slime4 = new SlimeEnemy(120, 350);
     
     
-    public Level5(Slime rimuru)
+    protected Level5(Slime rimuru)
     {    
         super(rimuru);
         this.rimuru = rimuru;
@@ -50,13 +47,11 @@ public class Level5 extends Level
         addObject(diego, 100, 100);
         addObject(bat2, 250, 160);
         addObject(bat3, 400, 260);
-
-        
     }
     public void enterLevel() {
         if(!doorsClosed) {
             if(rimuru.getX() > 297 && rimuru.getX() < 400 && rimuru.getY() < 122) {
-                Greenfoot.setWorld(new Level6(rimuru));
+                Greenfoot.setWorld(new Level7(rimuru));
             }
         }
     }
@@ -83,10 +78,26 @@ public class Level5 extends Level
             heart.setHealth(rimuru.getHealth());
             heart.setHeartImage();
         } else if(rimuru.getHealth() == 0) {
-            heart.setHealth(rimuru.getHealth());
-            heart.setHeartImage();
-            Greenfoot.setWorld(new GameOver());
+            try
+            {
+                saveScore();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+            Greenfoot.setWorld(new GameOver(rimuru));
         }
     }
-    
+    public void saveScore() throws IOException {
+        File file = new File("records.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(rimuru.getName() + " Nivel: 5\n");
+            fileWriter.close();
+        } catch(IOException ioexception) {
+            throw ioexception;
+        }
+        
+    }
 }

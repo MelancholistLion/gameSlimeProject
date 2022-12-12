@@ -4,8 +4,10 @@ public class GameOver extends World
 {
     private int opcion = 1;
     private Arrow arrow = new Arrow();
-    public GameOver() {
+    Slime rimuru;
+    public GameOver(Slime rimuru) {
         super(700, 394, 1);
+        this.rimuru = rimuru;
         prepararMundo();
     }
     private void prepararMundo() {
@@ -20,7 +22,8 @@ public class GameOver extends World
         if(Greenfoot.isKeyDown("SPACE") || Greenfoot.isKeyDown("ENTER")) {
             switch(opcion) {
                 case 0:
-                    Greenfoot.setWorld(new Level1(new Slime()));
+                    rimuru.setHealth();
+                    Greenfoot.setWorld(new Level1(rimuru));
                     break;
                 case 1:
                     Greenfoot.setWorld(new Menu());

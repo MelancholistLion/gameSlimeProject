@@ -1,11 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 
-/**
- * Write a description of class Level4 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Level4 extends Level
 {
     private boolean doorsClosed = true;
@@ -36,7 +33,7 @@ public class Level4 extends Level
     Rock3 rock13 = new Rock3();
     
     
-    public Level4(Slime rimuru)
+    protected Level4(Slime rimuru)
     {    
         super(rimuru);
         this.rimuru = rimuru;
@@ -102,9 +99,25 @@ public class Level4 extends Level
             heart.setHealth(rimuru.getHealth());
             heart.setHeartImage();
         } else if(rimuru.getHealth() == 0) {
-            heart.setHealth(rimuru.getHealth());
-            heart.setHeartImage();
-            Greenfoot.setWorld(new GameOver());
+            try
+            {
+                saveScore();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+            Greenfoot.setWorld(new GameOver(rimuru));
+        }
+    }
+    public void saveScore() throws IOException {
+        File file = new File("records.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(rimuru.getName() + " Nivel: 4\n");
+            fileWriter.close();
+        } catch(IOException ioexception) {
+            throw ioexception;
         }
     }
 }

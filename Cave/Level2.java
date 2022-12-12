@@ -1,4 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
 
 /**
  * Write a description of class Level1 here.
@@ -23,7 +26,7 @@ public class Level2 extends Level
     Rock2 rock2 = new Rock2();
     Rock3 rock3 = new Rock3();
     
-    public Level2(Slime rimuru)
+    protected Level2(Slime rimuru)
     {    
         super(rimuru);
         this.rimuru = rimuru;
@@ -35,7 +38,7 @@ public class Level2 extends Level
         openedCave();
         UpdateHealth();
         enterLevel();
-    }
+        }
     private void prepararMundo() {
         addObject(heart, 26, 22);
         addObject(rock, 224, 201);
@@ -77,9 +80,25 @@ public class Level2 extends Level
             heart.setHealth(rimuru.getHealth());
             heart.setHeartImage();
         } else if(rimuru.getHealth() == 0) {
-            heart.setHealth(rimuru.getHealth());
-            heart.setHeartImage();
-            Greenfoot.setWorld(new GameOver());
+            try
+            {
+                saveScore();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+            Greenfoot.setWorld(new GameOver(rimuru));
+        }
+    }
+    public void saveScore() throws IOException {
+        File file = new File("records.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(rimuru.getName() + " Nivel: 2\n");
+            fileWriter.close();
+        } catch(IOException ioexception) {
+            throw ioexception;
         }
     }
 }
